@@ -489,7 +489,7 @@ impl App for ObamifyApp {
                                     );
 
                                     let button = egui::Button::new("obamify new image")
-                                        .stroke(egui::Stroke::new(1.0, glow_color));
+                                        .stroke(egui::Stroke::new(1.0_f32, glow_color));
                                     ui.add(button)
                                 } else {
                                     ui.button("obamify new image")
@@ -1177,7 +1177,7 @@ fn prompt_image(
         spawn_local(async move {
             if let Some(handle) = rfd::AsyncFileDialog::new()
                 .set_title(title)
-                .add_filter("image files", &["png", "jpg", "jpeg", "webp"])
+                .add_filter("image files", &["png", "jpg", "jpeg", "webp", "jxl"])
                 .pick_file()
                 .await
             {
@@ -1203,7 +1203,7 @@ fn prompt_image(
     {
         if let Some(file) = rfd::FileDialog::new()
             .set_title(title)
-            .add_filter("image files", &["png", "jpg", "jpeg", "webp"])
+            .add_filter("image files", &["png", "jpg", "jpeg", "webp", "jxl"])
             .pick_file()
         {
             let name =

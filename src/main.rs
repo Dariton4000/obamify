@@ -6,6 +6,8 @@
 fn main() -> eframe::Result {
     env_logger::init(); // Log to stderr (if you run with `RUST_LOG=debug`).
 
+    jxl_image_rs_integration::register_image_decoding_hook(); // adds jpeg xl (.jxl) decoding support
+
     let native_options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
             .with_inner_size([1024.0, 1024.0])
@@ -27,6 +29,8 @@ fn main() -> eframe::Result {
 // When compiling to web using trunk:
 #[cfg(target_arch = "wasm32")]
 fn start_app() {
+    jxl_image_rs_integration::register_image_decoding_hook(); // adds jpeg xl (.jxl) decoding support
+
     use eframe::wasm_bindgen::JsCast as _;
     std::panic::set_hook(Box::new(console_error_panic_hook::hook));
 
